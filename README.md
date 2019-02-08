@@ -3,12 +3,11 @@
 This script for install and auto configure http proxy.
 
 Script works on Centos 7
-and can generete ip6's for \64 sub.
-
+and can generete uniq ip6's for \64 sub.
 
 ## Installation
 ![screen](screen.png)
-[Video tutorial](https://vimeo.com/user93341880/review/316140866/fcd94d4e86)
+[Video tutorial](https://youtu.be/EKBJHSTmT4w)
 
 [Buy VPS  Vultr](https://www.vultr.com/?ref=7502192)
 ```
