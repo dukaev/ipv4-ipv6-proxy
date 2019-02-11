@@ -10,19 +10,18 @@ Auto configurator of ipv4 → ipv6 http proxy. Redirect connections from differe
 ```
 bash <(curl -s "https://raw.githubusercontent.com/dukaev/ipv6_proxy/master/scripts/install.sh")
 ```
-[Video tutorial](https://youtu.be/EKBJHSTmT4w)
 
-[Buy VPS  Vultr](https://www.vultr.com/?ref=7502192)
+[Video tutorial](https://youtu.be/EKBJHSTmT4w) tested on VPS from [Vultr](https://www.vultr.com/?ref=7502192)
 
-After installation you can dowload file.
-The file is organized like this:
+After installation dowload the file `proxy.zip`
+File structure:
 ```
 IP4:PORT:LOGIN:PASS
 ```
-Use [format](http://buyproxies.org/panel/format.php
-) for formatted proxy list
+You can use this online [util](http://buyproxies.org/panel/format.php
+) to change proxy format as you like
 
-## Testing proxy
+## Test your proxy
 
 Firefox with [FoxyProxy](https://addons.mozilla.org/en-US/firefox/addon/foxyproxy-standard/)
 ![Foxy](foxyproxy.png)
