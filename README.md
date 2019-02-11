@@ -1,18 +1,19 @@
 ![cover](cover.svg)
 
-This script for install and auto configure http proxy.
+Auto configurator of ipv4 → ipv6 http proxy. Redirect connections from different ports on one ipv4 address to unique random ipv6 address from \64 subnetwork.
 
-Script works on Centos 7
-and can generate unique ip6's for \64 sub.
+## Requirements
+- Centos 7
+- Ipv6 \64
 
 ## Installation
-![screen](screen.png)
-[Video tutorial](https://youtu.be/EKBJHSTmT4w)
-
-[Buy VPS  Vultr](https://www.vultr.com/?ref=7502192)
 ```
 bash <(curl -s "https://raw.githubusercontent.com/dukaev/ipv6_proxy/master/scripts/install.sh")
 ```
+[Video tutorial](https://youtu.be/EKBJHSTmT4w)
+
+[Buy VPS  Vultr](https://www.vultr.com/?ref=7502192)
+
 After installation you can dowload file.
 The file is organized like this:
 ```
