@@ -29,7 +29,7 @@ gen_3proxy >/usr/local/etc/3proxy/3proxy.cfg
 cat >>/etc/rc.local <<EOF
 bash ${WORKDIR}/boot_iptables.sh
 bash ${WORKDIR}/boot_ifconfig.sh
-ulimit -n 2048
+ulimit -n 65536
 service 3proxy start
 EOF
 
