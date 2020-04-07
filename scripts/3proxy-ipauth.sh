@@ -26,7 +26,7 @@ flush
 auth iponly
 
 $(awk -F "/" '{print "auth iponly\n" \
-"allow " $1 "\n" \
+"allow * " $1 "\n" \
 "proxy -6 -n -a -p" $3 " -i" $2 " -e"$4"\n" \
 "flush\n"}' ${WORKDATA})
 EOF
