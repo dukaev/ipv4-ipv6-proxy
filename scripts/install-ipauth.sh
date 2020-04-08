@@ -67,12 +67,6 @@ gen_data() {
     done
 }
 
-gen_iptables() {
-    cat <<EOF
-    $(awk -F "/" '{print "iptables -I INPUT -p tcp --dport " $3 "  -m state --state NEW -j ACCEPT"}' ${WORKDATA}) 
-EOF
-}
-
 gen_ifconfig() {
     cat <<EOF
 $(awk -F "/" '{print "ifconfig eth0 inet6 add " $4 "/64"}' ${WORKDATA})
@@ -103,7 +97,7 @@ echo "Which IP do you want to authorize the proxies for?"
 read IP_AUTHORIZATION
 
 gen_data >$WORKDIR/data.txt
-gen_iptables >$WORKDIR/boot_iptables.sh
+iptables -I INPUT -p tcp --dport $IP6::/64 -m state --state NEW -j ACCEPT
 gen_ifconfig >$WORKDIR/boot_ifconfig.sh
 chmod +x boot_*.sh /etc/rc.local
 

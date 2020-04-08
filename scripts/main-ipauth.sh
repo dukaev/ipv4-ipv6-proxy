@@ -23,7 +23,7 @@ echo "Which IP do you want to authorize the proxies for?"
 read IP_AUTHORIZATION
 
 gen_data >$WORKDIR/data.txt
-gen_iptables >$WORKDIR/boot_iptables.sh
+iptables -I INPUT -p tcp --dport $IP6::/64 -m state --state NEW -j ACCEPT
 gen_ifconfig >$WORKDIR/boot_ifconfig.sh
 chmod +x boot_*.sh /etc/rc.local
 

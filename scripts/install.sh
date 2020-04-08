@@ -102,7 +102,7 @@ FIRST_PORT=10000
 LAST_PORT=$(($FIRST_PORT + $COUNT))
 
 gen_data >$WORKDIR/data.txt
-gen_iptables >$WORKDIR/boot_iptables.sh
+iptables -I INPUT -p tcp --dport $IP6::/64 -m state --state NEW -j ACCEPT
 gen_ifconfig >$WORKDIR/boot_ifconfig.sh
 chmod +x boot_*.sh /etc/rc.local
 
