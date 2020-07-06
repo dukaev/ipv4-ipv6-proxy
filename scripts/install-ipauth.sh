@@ -25,10 +25,10 @@ install_3proxy() {
     cd $WORKDIR
 }
 
-gen_3proxy() {
+gen_3proxy() { 
     cat <<EOF
 daemon
-maxconn 500
+maxconn 1000
 nscache 65536
 nscache6 65536
 timeouts 1 5 30 60 180 1800 15 60
@@ -36,20 +36,18 @@ setgid 65535
 setuid 65535
 stacksize 262144
 flush
-auth strong
+auth iponly
 
-users $(awk -F "/" 'BEGIN{ORS="";} {print $1 ":CL:" $2 " "}' ${WORKDATA})
-
-$(awk -F "/" '{print "auth strong\n" \
-"allow " $1 "\n" \
-"proxy -6 -n -a -p" $4 " -i" $3 " -e"$5"\n" \
+$(awk -F "/" '{print "auth iponly\n" \
+"allow * " $1 "\n" \
+"proxy -6 -n -a -p" $3 " -i" $2 " -e"$4"\n" \
 "flush\n"}' ${WORKDATA})
 EOF
 }
 
 gen_proxy_file_for_user() {
     cat >proxy.txt <<EOF
-$(awk -F "/" '{print $3 ":" $4 ":" $1 ":" $2 }' ${WORKDATA})
+$(awk -F "/" '{print $2 ":" $3 }' ${WORKDATA})
 EOF
 }
 
@@ -58,26 +56,20 @@ upload_proxy() {
     zip --password $PASS proxy.zip proxy.txt
     URL=$(curl -s --upload-file proxy.zip https://transfer.sh/proxy.zip)
 
-    echo "Proxy is ready! Format IP:PORT:LOGIN:PASS"
+    echo "Proxy is ready! Format IP:PORT"
     echo "Download zip archive from: ${URL}"
     echo "Password: ${PASS}"
 
 }
 gen_data() {
     seq $FIRST_PORT $LAST_PORT | while read port; do
-        echo "usr$(random)/pass$(random)/$IP4/$port/$(gen64 $IP6)"
+        echo "$IP_AUTHORIZATION/$IP4/$port/$(gen64 $IP6)"
     done
-}
-
-gen_iptables() {
-    cat <<EOF
-    $(awk -F "/" '{print "iptables -I INPUT -p tcp --dport " $4 "  -m state --state NEW -j ACCEPT"}' ${WORKDATA}) 
-EOF
 }
 
 gen_ifconfig() {
     cat <<EOF
-$(awk -F "/" '{print "ifconfig eth0 inet6 add " $5 "/64"}' ${WORKDATA})
+$(awk -F "/" '{print "ifconfig eth0 inet6 add " $4 "/64"}' ${WORKDATA})
 EOF
 }
 echo "installing apps"
@@ -100,6 +92,9 @@ read COUNT
 
 FIRST_PORT=10000
 LAST_PORT=$(($FIRST_PORT + $COUNT))
+
+echo "Which IP do you want to authorize the proxies for?"
+read IP_AUTHORIZATION
 
 gen_data >$WORKDIR/data.txt
 iptables -I INPUT -p tcp --dport $IP6::/64 -m state --state NEW -j ACCEPT
