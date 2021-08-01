@@ -7,7 +7,7 @@ Redirect connections from different ports at one ipv4 address to unique random i
 - Ipv6 \64
 
 ## Installation
-[Video tutorial](https://youtu.be/EKBJHSTmT4w), VPS from [Vultr *50$ free*](https://www.vultr.com/?ref=7847672-4F) used as Centos setup
+[Video tutorial](https://youtu.be/EKBJHSTmT4w), used as Centos setup
 
 1. `bash <(curl -s "https://raw.githubusercontent.com/dukaev/ipv6_proxy/master/scripts/install.sh")`
 
@@ -23,3 +23,6 @@ Install [FoxyProxy](https://addons.mozilla.org/en-US/firefox/addon/foxyproxy-sta
 
 Open [ipv6-test.com](http://ipv6-test.com/) and check your connection
 ![check ip](check_ip.png)
+
+
+[Contact to Telegram](https://t.me/current_user)
