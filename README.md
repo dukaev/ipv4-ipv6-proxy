@@ -1,5 +1,10 @@
 Redirect connections from different ports at one ipv4 address to unique random ipv6 address from \64 subnetwork. Based on 3proxy
 
+# The script not working. Need a maintainer
+# The script not working. Need a maintainer
+# The script not working. Need a maintainer
+
+
 ![cover](cover.svg)
 
 ## Requirements
@@ -24,5 +29,3 @@ Install [FoxyProxy](https://addons.mozilla.org/en-US/firefox/addon/foxyproxy-sta
 Open [ipv6-test.com](http://ipv6-test.com/) and check your connection
 ![check ip](check_ip.png)
 
-
-[Contact to Telegram](https://t.me/current_user)
